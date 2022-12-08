@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="lib/jquery.min.js"></script>
+  <link href="lib/bootstrap.min.css" rel="stylesheet" >
+  <script type="text/javascript">
+    const webIntegrationId =  "zZRQkV3SNaaF6ry8-bXwaekf5rWCJRPo"; //"U1jwz-MMBzSpL5PxTBzpAwZPHVNTxWM9";
+    function login() {
+      function isLoggedIn() {
+        return fetch("https://exponentia-ai-cloud.ap.qlikcloud.com/api/v1/users/me", {
+          method: 'GET',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'qlik-web-integration-id': webIntegrationId,
+          },
+        }).then(response => {
+          return response.status === 200;
+        });
+      }
+      return isLoggedIn().then(loggedIn => {
+        if (!loggedIn) {
+          // check login
+            window.location.href = "https://exponentia-ai-cloud.ap.qlikcloud.com/login?qlik-web-integration-id=" + webIntegrationId + "&returnto=" + location.href;
+          throw new Error('not logged in');
+        }
+      });
+    }
+	// login()
+  </script>
+</head>
+
+<body style="height:600px;">
+
+    <%- include('includes/nav.ejs') %>
+
+    <!-- <iframe src="https://exponentia-ai-cloud.ap.qlikcloud.com/single/?appid=25e92dac-b852-4761-bbc8-b5f8fc99110d&obj=TVwVRs&theme=sense&opt=ctxmenu,currsel" style="border:none;width:100%;height:100%;"></iframe> -->
+</body>
+
+</html>
+

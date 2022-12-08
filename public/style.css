@@ -1,0 +1,39 @@
+body {
+    background: #eee;
+}
+
+.content {
+    margin: 0 auto;
+}
+
+.object {
+    position: relative;
+    height: 300px;
+}
+
+.obj,
+.objone,
+.objtwo,
+.objthree {
+    position: relative;
+    height: 300px;
+    margin-top: 25px;
+}
+
+.toolbar {
+    margin: 12px 0px;
+}
+
+
+.btn-download{
+    display: none;
+    left: 15px;
+    position: absolute;
+    z-index: 2;
+    margin-right: 17px;
+    background: white;
+    bottom: 5px;
+}
+.btn-download:hover{
+    background-color: cornflowerblue;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart</title>
+    <script src="lib/jquery.min.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lib/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"> 
+                    <img class="header_logo" src="https://indianarmy.nic.in/assets/img/logo_light.png" alt=""
+                    style="height: 70px;">
+                   
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            MIS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+                            <li><a class="dropdown-item" href="/chart">Option 1</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/">Option 2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success me-2" type="submit">Search</button>
+                </form> 
+                <form action="/logout" method="post">
+                    <button class="btn btn-outline-primary" type="submit">logout</button>
+                </form>
+                
+            </div>
+        </div>
+    </nav>
+
+<div class="content container main">
+    <div class="toolbar"></div>
+    <div class="row">
+
+        <div class="obj col-md-6 col-sm-12">
+            <iframe src="https://qliksenseserver.exponentia.ai/single/?appid=2a41a653-2299-489a-ace5-c89364c5336b&obj=80235795-6fa6-436d-839f-416bfee6470f&opt=ctxmenu" style="border:none;width:100%;height:100%;"></iframe>                    <button class="btn btn-light btn-download objonetwo" data-obj="fXwWP">
+                
+            <button class="btn btn-light btn-download objonetwo" data-obj="RrDK">
+
+                <i class="bi bi-download"></i> download
+            </button>
+        </div> 
+       
+    </div>
+</div> 
+
+<script>
+    $(document).ready(function () { 
+      var height = $(".navbar").height();
+      if (height > 0) {
+        $(".main").css("margin-top", height + 30);
+      }  
+      (async () => { 
+        const response = await fetch('https://sleepy-gorge-24178.herokuapp.com/?UserId=qliktraining1');
+        const data = await response.json();  
+        var script = $("<script>");
+        script.attr("src", `https://qliksenseserver.exponentia.ai/resources/assets/external/requirejs/require.js?qlikTicket=${data.ticket}`);
+        script.attr("data-main", 'main.js');
+        $("head").append(script); 
+      })(); 
+    })
+  </script> 
+ 
+  <script src="lib/bootstrap.bundle.min.js"></script>  
+  </body>
+  
+  </html>

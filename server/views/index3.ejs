@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>hello word</h1>
+    <button onclick="ssoCreate()">OPEN QLICKSENSE</button>
+</div>
+    <script>
+
+    async function ssoCreate(){
+
+        
+        openssl req -new -newkey rsa:2048 -nodes -out your-certificate-name.csr -keyout your-certificate-name.key -subj "/C=IT/ST=Lombardia/L=Como/O=Batoc67 srl/CN=lending.com"
+        const response = await fetch('https://tips.vidalhealthtpa.com/qlik?UserId=qlik.hyundai1');
+        const data = await response.json();  
+        var script = $("<script>"); 
+
+        script.attr("src", "https://vtpa-qlik.vidalhealthtpa.com:9443/resources/assets/external/requirejs/require.js?qlikTicket="+data.ticket);
+        $("head").append(script); 
+        
+        setTimeout(function() {
+     		 window.open("https://vtpa-qlik.vidalhealthtpa.com:9443/hub/my/work");
+        }, 3000);
+
+    }
+
+
+      </script>  
+
+ 
+</body>
+
+</html>

@@ -34,11 +34,28 @@
     }
 	login()
   </script>
+
+  <style>
+     
+     
+  </style>
 </head>
 
-<body style="height:600px;">
+<body>
+
   <%- include('includes/nav.ejs') %>
-    <iframe src="https://exponentia-ai-cloud.ap.qlikcloud.com/sense/app/25e92dac-b852-4761-bbc8-b5f8fc99110d/sheet/46418a2e-664a-4d77-855e-eb4d5b194f3e/state/analysis" style="border:none;width:100%;height:100%;"></iframe>
+     <div class="main">
+       <iframe src="https://exponentia-ai-cloud.ap.qlikcloud.com/sense/app/25e92dac-b852-4761-bbc8-b5f8fc99110d/sheet/46418a2e-664a-4d77-855e-eb4d5b194f3e/state/analysis" style="border:none;width:100%;height:100%;"></iframe>
+     </div>
 </body>
+
+<script>
+    var height = $(".navbar").height();
+    if (height > 0) {
+      $(".main").css("margin-top", height + 30);
+    }
+    $('.main').css('height','calc(100% - 100px)')
+    
+</script>
 
 </html>

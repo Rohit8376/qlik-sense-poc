@@ -24,6 +24,15 @@ app.get('/', function (req, res) {
     console.log("cookey",req.cookies.userId)
     res.render('app', {userId:req.cookies.userId})
 }); 
+app.get('/app2', function (req, res) {
+    if(!req.cookies.isloggedin){ 
+        res.redirect('/login')
+        return
+    }
+    console.log("cookey",req.cookies.userId)
+    res.render('app2', {userId:req.cookies.userId})
+});
+
 
 app.get('/single-object',(req,res)=>{
     if(!req.cookies.isloggedin){

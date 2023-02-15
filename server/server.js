@@ -16,14 +16,19 @@ app.use(bodyparser.urlencoded({
     extended: true
   }));
 
-app.get('/', function (req, res) {
-    if(!req.cookies.isloggedin){ 
-        res.redirect('/login')
-        return
-    }
-    console.log("cookey",req.cookies.userId)
-    res.render('app', {userId:req.cookies.userId})
-}); 
+app.get('/', (req,res)=>{
+    res.render('sso')
+})
+
+// app.get('/', function (req, res) {
+//     if(!req.cookies.isloggedin){ 
+//         res.redirect('/login')
+//         return
+//     }
+//     console.log("cookey",req.cookies.userId)
+//     res.render('app', {userId:req.cookies.userId})
+// }); 
+
 app.get('/app2', function (req, res) {
     if(!req.cookies.isloggedin){ 
         res.redirect('/login')

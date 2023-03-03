@@ -59,7 +59,7 @@ app.get('/single-sheet', (req, res) => {
 
 
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login',{logout:false})
 })
 
 app.post('/login', (req, res) => {

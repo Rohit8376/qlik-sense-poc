@@ -65,7 +65,7 @@
 	<div id="logoutdiv">
 		<% if(logout){ %> 
 			<div>hdhdhh</div>
-		 <!-- <iframe id="logoutiframe" src="https://exponentia-ai-cloud.ap.qlikcloud.com/logout" ></iframe> -->
+			 <!-- <iframe id="logoutiframe" src="https://exponentia-ai-cloud.ap.qlikcloud.com/logout" ></iframe> -->
 		<%} %>
 	</div>
 
@@ -93,15 +93,14 @@
 
 	<% if(logout){ %> 
 		<script>
+
 			$.ajax({
 				url: "https://exponentia-ai-cloud.ap.qlikcloud.com/logout",
 				success: function (res) {
-				alert("inside")
+					alert("inside")
 				}
 			}); 
-			setTimeout(() => { 
-				window.location.href="/login" 
-			}, 2000);
+			
 		</script>
    <%} %>
 

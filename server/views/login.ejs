@@ -63,18 +63,20 @@
 	</section>
 
 	<div id="logoutdiv">
-		<iframe id="logoutiframe" src="https://exponentia-ai-cloud.ap.qlikcloud.com/logout" ></iframe>
+		<% if(logout){ %>
+		 <iframe id="logoutiframe" src="https://exponentia-ai-cloud.ap.qlikcloud.com/logout" ></iframe>
+		<%} %>
 	</div>
 
 
 	<script>
-
-		document.querySelector("#logoutiframe").addEventListener( "load", function(e) {
-		alert(this.nodeName);
 		document.getElementById('logoutdiv').remove(); 
+	// 	document.querySelector("#logoutiframe").addEventListener( "load", function(e) {
+	// 	alert(this.nodeName);
+		
 
-	} );
-	
+	// } );
+
 	</script>
 
 	<script src="lib/jquery.min.js"></script>

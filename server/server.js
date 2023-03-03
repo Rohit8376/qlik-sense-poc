@@ -88,7 +88,7 @@ app.post('/logout', async (req, res) => {
     res.cookie(`userId`,"");
     console.log(req.cookies.userId)
     console.log(req.cookies.isloggedin)
-    res.redirect('/login') 
+    res.redirect('/login' , {logout:true}) 
 })
 
 

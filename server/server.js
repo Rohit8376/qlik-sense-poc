@@ -80,6 +80,8 @@ app.post('/logout', async (req, res) => {
         console.log(response.statusCode);
         // Printing body
         console.log(body);
+
+        res.redirect('/login')
     });
 
     // res.clearCookie('isloggedin')

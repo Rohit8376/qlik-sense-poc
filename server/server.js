@@ -71,26 +71,24 @@ app.post('/login', (req, res) => {
 
 app.post('/logout', async (req, res) => {
 
+    // request(url, (error, response, body) => {
+    //     // Printing the error if occurred
+    //     if (error) console.log(error)
+    //     // Printing status code
+    //     console.log(response.statusCode);
+    //     // Printing body
+    //     console.log(body);
 
-    let url = "https://exponentia-ai-cloud.ap.qlikcloud.com/logout";
-    request(url, (error, response, body) => {
-        // Printing the error if occurred
-        if (error) console.log(error)
-        // Printing status code
-        console.log(response.statusCode);
-        // Printing body
-        console.log(body);
+    //     res.redirect('/login', {url:""})
+    // });
 
-        res.redirect('/login')
-    });
-
-    // res.clearCookie('isloggedin')
-    // res.clearCookie('userId')
-    // res.cookie(`isloggedin`,false);
-    // res.cookie(`userId`,"");
-    // console.log(req.cookies.userId)
-    // console.log(req.cookies.isloggedin)
-    // res.redirect('/login') 
+    res.clearCookie('isloggedin')
+    res.clearCookie('userId')
+    res.cookie(`isloggedin`,false);
+    res.cookie(`userId`,"");
+    console.log(req.cookies.userId)
+    console.log(req.cookies.isloggedin)
+    res.redirect('/login') 
 })
 
 

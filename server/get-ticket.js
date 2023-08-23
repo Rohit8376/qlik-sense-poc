@@ -2,7 +2,7 @@
 const fs = require('fs');
 const request = require('request');
 
-var directory = "../pem/";
+var directory = "./pem/";
 
 var get_ticket_redirect = function (proxyRestUri, callback) {
 
@@ -34,13 +34,19 @@ var get_ticket_redirect = function (proxyRestUri, callback) {
             console.log(response);
         }
         else { 
-            console.log("Ticket: " + response.body.Ticket);
+            console.log(response.body);
             callback(body.Ticket); 
         }
     });
 
 }
 
-module.exports = {
-    get_ticket_redirect: get_ticket_redirect
-} 
+
+get_ticket_redirect("https://qliksenseserver.exponentia.ai:4243/qps", function (ticket) {
+
+console.log(ticket)
+    res.send({status:200,'ticket':ticket.Ticket?ticket.Ticket:ticket, message:"success"})
+}); 
+
+
+ 

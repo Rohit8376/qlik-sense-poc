@@ -5,7 +5,7 @@ const cors = require('cors')
 var cookieParser = require('cookie-parser');
 var bodyparser = require('body-parser')
 const request = require('request')
-
+const fs = require('fs')
 
 var app = express();
 app.use(express.json())
@@ -18,9 +18,6 @@ app.use(bodyparser.urlencoded({
     extended: true
 }));
 
-// app.get('/', (req,res)=>{
-//     res.render('sso')
-// })
 
 app.get('/', function (req, res) {
     if (!req.cookies.isloggedin) {
@@ -92,11 +89,56 @@ app.post('/logout', async (req, res) => {
 })
 
 
-
-
 app.get('/vidaltesting', (req, res) => {
     res.render('index3')
 })
+
+
+app.get('/getTicket', function (req, res) {
+    console.log(req.query)
+    const userId = req.query.UserId;
+    const UserDirectory = req.query.UserDirectory?req.query.UserDirectory:'QLIKSENSEVM3';
+    if(!userId){
+       return res.send({status:403,'ticket':"", message:"UserId is required and UserDirectory is optional"})
+    }
+    get_ticket_redirect("https://qliksenseserver.exponentia.ai:4243/qps",userId,UserDirectory, function (ticket) {
+        res.send({status:200,'ticket':ticket, message:"success"})
+    }); 
+});  
+
+
+function get_ticket_redirect(proxyRestUri,userId, UserDirectory,callback){
+    var directory = "./pem/";
+    var options = {
+        uri:  proxyRestUri+'/ticket?xrfkey=0123456789ABCDEF',
+        headers: {
+            'content-type': 'application/json',
+            'x-qlik-xrfkey': '0123456789ABCDEF',
+            'X-Qlik-User': 'UserDirectory='+UserDirectory?UserDirectory:'QLIKSENSEVM3'+   '; UserId='+userId,
+        },
+        method: 'POST',
+        body: {
+            "UserDirectory": UserDirectory?UserDirectory:'QLIKSENSEVM3',
+            "UserId": userId,
+            "Attributes": [],
+        },
+        json: true,
+        ca: fs.readFileSync(directory + "root.pem"),
+        key: fs.readFileSync(directory + "client_key.pem"),
+        cert: fs.readFileSync(directory + "client.pem"),
+        rejectUnauthorized: false,
+        agent: false
+    };
+    request(options, function (error, response, body) {
+        if (error) {
+            console.log(error)
+            callback(error)
+        }
+        else {
+            callback(body.Ticket); 
+        }
+    });
+}
 
 let port = process.env.PORT || 3000
 
